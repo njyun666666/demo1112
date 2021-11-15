@@ -1,0 +1,107 @@
+<div class="topbar">
+
+    <button type="button" (click)="meunToggle()">menu</button>
+
+
+</div>
+
+
+
+<div>
+
+
+
+    <div class="sidebar close" #sidebar>
+        aaaaaa
+    </div>
+
+
+
+
+
+    <div class="content">
+
+
+
+        <app-bbb (textEmitter)="output($event)"></app-bbb>
+
+
+
+
+
+
+        <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+
+
+            <input type="text" name="account" ngModel="" #account="ngModel" required>
+            <span *ngIf="account.errors && account.touched">error</span>
+
+            <br>
+
+            <input type="text" name="password" ngModel="" #account="ngModel">
+
+
+            <br><br>
+
+            <button type="submit">submit</button>
+
+
+            <br><br>
+            <pre>
+{{form.value|json}}
+</pre>
+
+
+        </form>
+
+
+
+        <br><br>
+
+        <button type="button" (click)="btnClick($event)">aaaaa</button>
+
+        <br>
+
+        <hr>
+
+        <br>
+
+
+        <form [formGroup]="fbForm" (ngSubmit)="fbSubmit(fbForm)">
+
+            <input type="text" formControlName="account" #fbAccount appInput [appTextColor]="fbAccount.value"
+                class="green" (keyup)="fbAcountKey($event)">
+            =
+            <span class="text-1">{{fbAccount.value}}</span>
+
+            <br>
+
+            <input type="text" formControlName="password" #fbPassword (keyup.enter)="fbEnter(fbPassword.value)"
+                (keydown.enter)="$event.preventDefault()">
+
+            <br><br>
+
+            <button>submit</button>
+
+            <pre>
+{{fbForm.value|json}}
+</pre>
+            <pre>
+{{fbForm.get('account')?.errors|json}}
+</pre>
+
+
+        </form>
+
+
+        <br><br>
+
+
+
+
+
+    </div>
+
+
+
+</div>
